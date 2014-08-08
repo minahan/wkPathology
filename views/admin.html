@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="/javascripts/phototagger.jquery.js"></script>
 	<script type="text/javascript">
 
-	//jQuery.fn.phototagger.defaultOptions.isDelayed = true;
+	//jQuery.fn.photoTagger.defaultOptions.isDelayed = true;
 		
 		// When the DOM is ready, initialize the scripts.
 		
@@ -93,9 +93,18 @@
 		
 		$( "button.upload" ).click(
 		function( event ){
-			//$.session.set("photoID","...");
-			console.log("worked");
-			//console.log($.session.get("photoID"));
+			sessionStorage.clear();
+			var photoID = $("img").id;
+			sessionStorage.setItem('current picture',photoID);
+			//console.log(sessionStorage.getItem(photoID));
+		});
+
+		$( "button.submit" ).click(
+		function( event ){
+			var picture = sessionStorage.getItem('current picture');
+			sessionStorage.removeItem('current picture');
+			//var returnItem = picture + ":" + sessionStorage;
+			console.log(sessionStorage);
 		});
 
 
@@ -122,8 +131,8 @@
 			<img 
 				id="photo3" 
 				src="/images/DSC_0894.JPG" 
-				width="520"
-				height="347"
+				width="780"
+				height="520.5"
 				/>
 		</div>
 	
@@ -148,7 +157,7 @@
 	</div>
 
 	<div id = "button">
-		<button type="button" onclick="submitPicture()=">Submit Picture</button>
+		<button type="button" class="submit">Submit Picture</button>
 	</div>
 
 	<div id="existingtags" style="font-family:monospace">

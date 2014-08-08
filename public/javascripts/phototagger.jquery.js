@@ -220,19 +220,22 @@
 			
 			var messageToAppend = "<div id='"+message+"'>"+message+"</div>";
 			$("#existingtags").append(messageToAppend);
+			var photoID = $("img").id;
 
-			var tagToStore = '"'+message + '":{'+
-											'"x":'+x+
-											',"y":'+y+
-											',"height":'+height+
-											',"width":'+width+
-											'},';
-			console.log(tagToStore);
-
+			var tagToStore = {
+								'x':x,
+								'y':y,
+								'height':height,
+								'width':width
+							};
+			//console.log(tagToStore);
+			//var photoID = $("img").id;
+			sessionStorage.setItem(message,tagToStore);
+			//console.log(sessionStorage.getItem(message));
 			var self = this;
 			
 			// Create the physical tag.
-			var tag = this.createTag( x, y, width, height );
+			var tag = this.createTag( x, y, width, height,message );
 			
 			// Associate the appropriate data with the tag.
 			tag.data( "id", id );
@@ -254,6 +257,15 @@
 					}
 				}
 			);
+
+			var tagID = tag.data( "message" );
+			$("#"+tagID).mouseover( function(){
+				self.emphasizeTag( tag );
+			});	
+
+			$("#"+tagID).mouseout( function(){
+				self.deemphasizeTag( tag );
+			});			
 			
 			// Bind the mouse out event on this tag.
 			tag.bind(
@@ -347,9 +359,9 @@
 		
 		// I create a new tag object with the given position 
 		// (but do not append it to the container object.
-		createTag: function( left, top, width, height ){
+		createTag: function( left, top, width, height,message ){
 			// Create the new tag.
-			var tag = $( "<a class='" + this.getFullClassName( "tag" ) + "'><br /></a>" );
+			var tag = $( "<a class='" + this.getFullClassName( "tag" ) +"'id='"+message+"'><br /></a>" );
 			
 			// Set the absolute positon (within the container).
 			// By default, the tag will start out hidden.
@@ -395,11 +407,14 @@
 		// I delete the given tag.
 		deleteTag: function( tag ){
 			// Delete the tag record.
+			var tagID = tag.data( "message" );
+			console.log(tag.data( "message" ));
+			sessionStorage.removeItem(tag.data( "message" ));
+
 			this.deleteTagRecord( tag.data( "id" ) );
 			
 			// Remove the elements from the collection.
 			this.tags = this.tags.not( tag );
-			console.log(tag.message);
 			
 			// Remove the tag from the container.
 			tag.remove();		

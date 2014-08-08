@@ -1,3 +1,9 @@
+body {
+    margin-left: 80px;
+    margin-top: 80px;
+    font-family: monospace;
+}
+
 div.photo-column {
     float: left ; 
     margin-right: 10px ;
@@ -17,6 +23,7 @@ h1 {
 p {
     margin-left: 20px;
     font-family: monospace;
+    margin-bottom: 20px;
 }
 
 .existingtags {
