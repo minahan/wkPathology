@@ -1,0 +1,58 @@
+div.photo-column {
+    float: left ; 
+    margin-right: 10px ;
+    }
+        
+div.photo-container {
+    margin-bottom: 13px ;
+    margin-right:20px;
+    }
+
+h1 {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-family: monospace;
+}
+
+p {
+    margin-left: 20px;
+    font-family: monospace;
+}
+
+.existingtags {
+    font-family: monospace;
+    margin-left: 20px;
+}
+
+div.enabledisable {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color:#f9f9f9;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    cursor:pointer;
+    color:#666666;
+    font-family:monospace;
+    font-size:12px;
+    font-weight:bold;
+    padding:6px 20px;
+    text-decoration:none;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 170px;
+}
+
+button:hover {
+    background-color:#e9e9e9;
+}
+button:active {
+    position:relative;
+    top:1px;
+}
+
+

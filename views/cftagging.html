@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Admin Input</title>
+	<link rel="stylesheet" type="text/css" href="css/tags.css">
+	<script type="text/javascript" src="views/jquery-1.4.1.js"></script>
+	<script type="text/javascript" src="views/coldfusion.json.js"></script>
+	<script type="text/javascript" src="views/phototagger.jquery.js"></script>
+	<script type="text/javascript">
+		
+		// When the DOM is ready, initialize the scripts.
+		jQuery(function( $ ){
+			
+			// Set up the photo tagger.
+			$( "div.photo-container" ).photoTagger({
+				
+				// The API urls.
+				loadURL: "./load_tags.cfm",
+				saveURL: "./save_Tag.cfm",
+				deleteURL: "./delete_tag.cfm",
+				
+				// Default to turned on.
+				// isTagCreationEnabled: false,
+				
+				// This will allow us to clean the response from 
+				// a ColdFusion server (it will convert the 
+				// uppercase keys to lowercase keys expected by
+				// the photoTagger plugin.
+				cleanAJAXResponse: cleanColdFusionJSONResponse
+			});
+		
+		});
+		
+	</script>
+</head>
+<body>
+
+	<h1>
+		Admin Input
+	</h1>
+
+	<p>
+		Click and drag to create a tag. <br>
+		Double click to delete it.
+	</p>
+
+	
+	<div class="photo-column">
+	
+		<div class="photo-container">
+			<img 
+				id="photo3" 
+				src="/views/DSC_0894.JPG" 
+				width="1040"
+				height="694"
+				/>
+		</div>
+	
+	</div>
+
+	<div id="tags" style="font-family:monospace">
+			Existing tags: 	
+	</div>
+	
+</body>
+</html>
